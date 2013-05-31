@@ -1,9 +1,12 @@
 BddSharp - A Simple Behavior Driven Development Setup for C#
-========
 
-Work in Progess
+Instructions: 
 
-License
+ 1) Incorporate 'BddSharp' NuGet package in your project 
+ 2) 
+
+
+License
 
 The MIT License Copyright (c) 2011 TrueCar, Inc.
 
