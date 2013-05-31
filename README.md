@@ -4,10 +4,10 @@
 ### Credits
 Mishkin Faustini, Author
 
-## Instructions
+## Setup / Requirements
 
- 1) Incorporate 'BddSharp' NuGet package in your project by using the NuGet package manager or manually compiling the DLL and including the reference in your project
-
+ 1. Incorporate 'BddSharp' NuGet package in your project by using the NuGet package manager or manually compiling the DLL and including the reference in your project 
+ 
 ### Create A Test Server
 
 ```csharp
