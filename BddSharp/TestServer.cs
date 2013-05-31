@@ -23,11 +23,14 @@ namespace BddSharp
 
             if (environmentVars != null)
                 EnvironmentVariables.Add(environmentVars);
-
-            IsRunning = false;
         }
 
-        public bool IsRunning { get; private set; }
+        public bool IsRunning { get { return RunningServers.Length > 0; } }
+
+        private Process[] RunningServers
+        {
+            get { return Process.GetProcessesByName("WebDev.WebServer40"); }
+        } 
 
         public void Kill()
         {
@@ -87,7 +90,6 @@ namespace BddSharp
             process.StartInfo.UseShellExecute = false;
 
             process.Start();
-            IsRunning = true;
 
             AfterSpawn();
         }
