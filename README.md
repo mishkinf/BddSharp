@@ -1,12 +1,42 @@
-BddSharp - A Simple Behavior Driven Development Setup for C#
+# BddSharp
+*A Simple Behavior Driven Development Setup for C#*
 
-Instructions: 
+### Credits
+Mishkin Faustini, Author
 
- 1) Incorporate 'BddSharp' NuGet package in your project 
- 2) 
+## Setup / Requirements
+
+ 1. Install the following NuGet Packages 
+   * 'BddSharp' - https://nuget.org/packages/BddSharp
+   * 'SpecFlow' - https://nuget.org/packages/SpecFlow/
+   * 'SpecFlow.NUnit' - https://nuget.org/packages/SpecFlow.NUnit/
+   * 'WaTin' - https://nuget.org/packages/watin/
+   * 'NUnit' - https://nuget.org/packages/nunit/
+ 
+### Create A Test Server
+
+```csharp
+// Create a class that derives from TestServer
+public class MyProjectTestServer : TestServer
+{
+  public MyProjectTestServer(string port, string physicalPathCompiledApp) : base(port, physicalPathCompiledApp)
+  {
+    // CTOR
+  }
+}
+
+// Spawn your test server before running tests
+
+MyProjectTestServer server = new MyProjectTestServer("33333", @"c:/somePathToCompiledApp");
+server.Spawn();
+
+// Run all SpecFlow/Integration tests
+
+server.Kill(); 
+```
 
 
-License
+### License
 
 The MIT License Copyright (c) 2011 TrueCar, Inc.
 
