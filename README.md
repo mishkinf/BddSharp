@@ -14,6 +14,7 @@ Mishkin Faustini, Author
    * [SpecFlow.NUnit](https://nuget.org/packages/SpecFlow.NUnit/)
    * [WaTin](https://nuget.org/packages/watin/)
    * [NUnit](https://nuget.org/packages/nunit/)
+ 2. You must have IIS Installed and Configured for your needs
 
 ### Creating A Test Server
 
