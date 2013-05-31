@@ -39,6 +39,14 @@ server.Kill();
 ```
 
 ### Creating Pages 
+```csharp
+ // Set your host properly (most times this is http://localhost:<portNum>)
+ Nav.Port = "44444";
+ Nav.Host = "http://localhost";
+ // Easily set pages on Nav.Pages 
+ Nav.Pages.Home = "/";
+ Nav.Pages.About = "/About";
+```
 
 ### Using a Generic Context
 
