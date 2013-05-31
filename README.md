@@ -2,8 +2,29 @@ BddSharp - A Simple Behavior Driven Development Setup for C#
 
 Instructions: 
 
- 1) Incorporate 'BddSharp' NuGet package in your project 
- 2) 
+ 1) Incorporate 'BddSharp' NuGet package in your project by using the NuGet package manager or manually compiling the DLL and including the reference in your project
+
+Create A Test Server
+
+```csharp
+// Create a class that derives from TestServer
+public class MyProjectTestServer : TestServer
+{
+  public MyProjectTestServer(string port, string physicalPathCompiledApp) : base(port, physicalPathCompiledApp)
+  {
+    // CTOR
+  }
+}
+
+// Spawn your test server before running tests
+
+MyProjectTestServer server = new MyProjectTestServer("33333", @"c:/somePathToCompiledApp");
+server.Spawn();
+
+// Run all SpecFlow/Integration tests
+
+server.Kill(); 
+```
 
 
 License
