@@ -6,7 +6,12 @@ Mishkin Faustini, Author
 
 ## Setup / Requirements
 
- 1. Incorporate 'BddSharp' NuGet package in your project by using the NuGet package manager or manually compiling the DLL and including the reference in your project 
+ 1. Install the following NuGet Packages 
+   * 'BddSharp' - https://nuget.org/packages/BddSharp
+   * 'SpecFlow' - https://nuget.org/packages/SpecFlow/
+   * 'SpecFlow.NUnit' - https://nuget.org/packages/SpecFlow.NUnit/
+   * 'WaTin' - https://nuget.org/packages/watin/
+   * 'NUnit' - https://nuget.org/packages/nunit/
  
 ### Create A Test Server
 
