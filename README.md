@@ -1,10 +1,14 @@
-BddSharp - A Simple Behavior Driven Development Setup for C#
+# BddSharp
+*A Simple Behavior Driven Development Setup for C#*
 
-Instructions: 
+### Credits
+Mishkin Faustini, Author
+
+## Instructions
 
  1) Incorporate 'BddSharp' NuGet package in your project by using the NuGet package manager or manually compiling the DLL and including the reference in your project
 
-Create A Test Server
+### Create A Test Server
 
 ```csharp
 // Create a class that derives from TestServer
@@ -27,7 +31,7 @@ server.Kill();
 ```
 
 
-License
+### License
 
 The MIT License Copyright (c) 2011 TrueCar, Inc.
 
