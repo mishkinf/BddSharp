@@ -47,7 +47,7 @@ server.Kill();
 
 ### Using Test Fixtures
 
-## Example tests
+## Examples
 
 ### SpecFlow & WaTin
 *Integration Testing using Test Fixture Data*
