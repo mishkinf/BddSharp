@@ -57,7 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BddSharpSeedInitializer.cs" />
     <Compile Include="DynamicDictionary.cs" />
     <Compile Include="iGenericDbContext.cs" />
     <Compile Include="Nav.cs" />

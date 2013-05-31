@@ -67,9 +67,8 @@ namespace BddSharp
 //            logger.Debug("--- Spawning Test Server for tests ---");
 
             string LocalHostUrl = string.Format("http://localhost:{0}", PortNumber);
-            //            string PhysicalPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName + "\\ALG.Garage.Web"; //  the path of compiled web app
 
-//            logger.Debug(String.Format("Test server: {0}", LocalHostUrl));
+            //            logger.Debug(String.Format("Test server: {0}", LocalHostUrl));
 
             Process process = new Process();
 

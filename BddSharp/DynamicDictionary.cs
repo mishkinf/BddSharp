@@ -17,7 +17,7 @@ namespace BddSharp
             T data;
             if (!_dictionary.TryGetValue(binder.Name, out data))
             {
-                throw new KeyNotFoundException("There is no fixture by that name: " + binder.Name);
+                throw new KeyNotFoundException("There is no item with key: " + binder.Name);
             }
 
             result = data;
@@ -34,6 +34,37 @@ namespace BddSharp
             else
             {
                 _dictionary.Add(binder.Name, (T)value);
+            }
+
+            return true;
+        }
+
+        public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
+        {
+            T data;
+
+            string key = indexes[0].ToString();
+            if (!_dictionary.TryGetValue(key, out data))
+            {
+                throw new KeyNotFoundException("There is no item with key: " + key);
+            }
+
+            result = data;
+
+            return true;
+        }
+
+        public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
+        {
+            string key = indexes[0].ToString();
+
+            if (_dictionary.ContainsKey(key))
+            {
+                _dictionary[key] = (T)value;
+            }
+            else
+            {
+                _dictionary.Add(key, (T)value);
             }
 
             return true;

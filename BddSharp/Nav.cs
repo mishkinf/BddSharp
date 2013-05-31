@@ -9,6 +9,6 @@ namespace BddSharp
     public class Nav
     {
         public static string Host;
-        public static DynamicDictionary<string> Pages = new DynamicDictionary<string>();
+        public static dynamic Pages = new DynamicDictionary<string>();
     }
 }
