@@ -14,6 +14,7 @@ Mishkin Faustini, Author
    * [SpecFlow.NUnit](https://nuget.org/packages/SpecFlow.NUnit/)
    * [WaTin](https://nuget.org/packages/watin/)
    * [NUnit](https://nuget.org/packages/nunit/)
+ 2. You must have IIS Installed and Configured for your needs
 
 ### Creating A Test Server
 
@@ -38,6 +39,14 @@ server.Kill();
 ```
 
 ### Creating Pages 
+```csharp
+ // Set your host properly (most times this is http://localhost:<portNum>)
+ Nav.Port = "44444";
+ Nav.Host = "http://localhost";
+ // Easily set pages on Nav.Pages 
+ Nav.Pages.Home = "/";
+ Nav.Pages.About = "/About";
+```
 
 ### Using a Generic Context
 
@@ -47,7 +56,7 @@ server.Kill();
 
 ### Using Test Fixtures
 
-## Example tests
+## Examples
 
 ### SpecFlow & WaTin
 *Integration Testing using Test Fixture Data*
