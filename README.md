@@ -15,7 +15,14 @@ Mishkin Faustini, Author
    * [WaTin](https://nuget.org/packages/watin/)
    * [NUnit](https://nuget.org/packages/nunit/)
  2. You must have IIS Installed and Configured for your needs
-
+ 3. General Folder Structure Recommended for Test Project
+  * TestProject
+     - Feature/
+     - Fixtures/
+     - JavaScript/
+     - Spec/
+     - SpecHelper.cs
+ 
 ### Creating A Test Server
 
 ```csharp
@@ -53,6 +60,7 @@ server.Kill();
 ### Creating a Test Context
 
 ### Creating Test Fixtures
+
 
 ### Using Test Fixtures
 
