@@ -64,6 +64,8 @@ public class SpecHelper
       // Runs before any of the tests are run
       Database.SetInitializer(new MyProjectSeedInitializer(context => dataFixtures.Load(context, Assembly.GetExecutingAssembly())));;
       MyProjectContext.Database.Initialize(true);
+      
+      testServer.Spawn();
     }
 
     [TearDown]
