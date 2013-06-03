@@ -54,7 +54,7 @@ SpecHelper.cs is the file where you should create a test server, do any global l
 public class SpecHelper
 {
     public static dynamic dataFixtures;
-    private static ShowRoomDataContext ShowRoomContext;
+    private static MyProjectDataContext MyProjectContext;
     private static string serverPath = "<path to deployed app>";
     public static MyProjectTestServer testServer = new MyProjectTestServer("44444", serverPath);
 
@@ -63,7 +63,7 @@ public class SpecHelper
     {
       // Runs before any of the tests are run
       Database.SetInitializer(new MyProjectSeedInitializer(context => dataFixtures.Load(context, Assembly.GetExecutingAssembly())));;
-      ShowRoomContext.Database.Initialize(true);
+      MyProjectContext.Database.Initialize(true);
     }
 
     [TearDown]
