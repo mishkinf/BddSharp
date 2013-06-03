@@ -22,7 +22,7 @@ Mishkin Faustini, Author
      - JavaScript/
      - Spec/
      - SpecHelper.cs
- 
+
 ### Creating A Test Server
 
 ```csharp
@@ -44,6 +44,36 @@ server.Spawn();
 
 server.Kill(); 
 ```
+ 
+### Understanding SpecHelper.cs
+SpecHelper.cs is the file where you should create a test server, do any global level test setup and cleanup, and seed your test database properly. 
+
+```csharp
+
+ [SetUpFixture]
+public class SpecHelper
+{
+    public static dynamic dataFixtures;
+    private static ShowRoomDataContext ShowRoomContext;
+    private static string serverPath = "<path to deployed app>";
+    public static MyProjectTestServer testServer = new MyProjectTestServer("44444", serverPath);
+
+    [SetUp]
+    public static void BeforeAllTests()
+    {
+      // Runs before any of the tests are run
+      Database.SetInitializer(new MyProjectSeedInitializer(context => dataFixtures.Load(context, Assembly.GetExecutingAssembly())));;
+      ShowRoomContext.Database.Initialize(true);
+    }
+
+    [TearDown]
+    public static void AfterAllTests()
+    {
+        testServer.Kill();
+    }
+}
+```
+
 
 ### Creating Pages 
 ```csharp
