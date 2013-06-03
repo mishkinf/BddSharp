@@ -94,7 +94,7 @@ Your web application must be using a generic data context in order to gain the B
 A test context is substituted for unit testing with data fixtures. This gives us tests that run in memory and thus very speedily since they are not polling/resetting the database.
 
 ### Creating Test Data Fixtures
-Idealy your tests should be driven against test data. Test data fixtures provide the ability to simply generate data which is used for in memory unit testing and for seeding the test database that runs the SpecFlow/Watin integration tests.
+Idealy your tests should be driven against test data. Test data fixtures provide the ability to simply generate data which is used for in memory unit testing and for seeding the test database that runs the SpecFlow/WatiN integration tests.
 
 ### Using Test Data Fixtures
 Test data can be easily referenced in any of your tests
@@ -102,7 +102,7 @@ Test data can be easily referenced in any of your tests
 
 ## Examples
 
-### SpecFlow & WaTin
+### SpecFlow & WatiN
 *Integration Testing using Test Fixture Data*
 
 ### NUnit
