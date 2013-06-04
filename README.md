@@ -134,6 +134,49 @@ Test data can be easily referenced in any of your tests
 ### SpecFlow & WatiN
 *Integration Testing using Test Fixture Data*
 
+Restaurants.feature
+```csharp
+// Insert fixture here
+```
+
+```gherkin
+Feature: Restaurants
+
+Scenario: Get Open Restaurants 
+ Given I have loaded test data fixtures
+	When I visit the restaurants page
+	Then I click on #open_restaurants
+	And I should see "mishkinsRestaurant" restaurant listed
+```
+
+CustomWebSteps.cs
+```csharp
+[Binding]
+public class CustomWebSteps
+{
+    [Given]
+    public void Given_I_have_loaded_fixtures()
+    {
+        SpecHelper.LoadTestDataFixtures();
+        SpecHelper.EnsureTestServerIsSetup();
+    }
+
+    [When(@"I visit the restaurants page")]
+    public void WhenIVisitTheRestaurantsPage()
+    {
+        WebBrowser.Current.GoTo(Nav.Pages.Restaurants);
+        WebBrowser.Current.WaitForComplete();            
+    }
+
+    [Then("I should see \"(.*)\" restaurant listed)]
+    public void Then_I_should_see_restaurant_in_results(string fixtureName)
+    {
+        Restaurant fixture = SpecHelper.dataFixtures[fixtureName];
+        Assert.True(WebBrowser.Current.Div("restaurants").Text.Contains(fixture.RestaurantName));
+    }
+}
+```
+
 ### NUnit
 *Unit Testing using Test Fixture Data*
 ```csharp
