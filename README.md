@@ -135,12 +135,13 @@ Test data can be easily referenced in any of your tests
 ### SpecFlow & WatiN
 *Integration Testing using Test Fixture Data*
 
-Restaurants.feature
 ```csharp
+// RestaurantFixtures.cs
 // Insert fixture here
 ```
 
 ```gherkin
+# Restaurants.feature
 Feature: Restaurants
 
 Scenario: Get Open Restaurants 
@@ -150,8 +151,8 @@ Scenario: Get Open Restaurants
 	Then I should see "mishkinsRestaurant" restaurant listed
 ```
 
-CustomWebSteps.cs
 ```csharp
+// CustomWebSteps.cs
 [Binding]
 public class CustomWebSteps
 {
