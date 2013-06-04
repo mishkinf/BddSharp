@@ -115,10 +115,11 @@ An example of a generic database initializer that seeds the fixture test data
  Nav.Pages.About = "/About";
 ```
 
-### Using a Generic Context
-Your web application must be using a generic data context in order to gain the BDD benefits that this framework provides. 
+### Using a Generic Repository
+For more information about the Repository pattern please read [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application)
+Your web application must be using a generic repository in order to gain the BDD benefits that this framework provides. 
 
-### Creating a Test Context
+### Creating a Test Repository
 A test context is substituted for unit testing with data fixtures. This gives us tests that run in memory and thus very speedily since they are not polling/resetting the database.
 
 ### Creating Test Data Fixtures
@@ -135,9 +136,31 @@ Test data can be easily referenced in any of your tests
 
 ### NUnit
 *Unit Testing using Test Fixture Data*
+```csharp
+[TestFixture]
+public class RestaurantManagerSpec
+{
+    RestaurantManager restaurantManager  = new RestaurantManager();
+
+    [SetUp]
+    public void SetupRestaurantManagerSpec()
+    {
+        TestContext<Restaurant> restaurantRepository = SpecHelper.GetContext<Restaurant>();
+        restaurantManager.Repository = restaurantRepository;
+    }
+
+    [Test, Description("When given a time, should return restaurants that are open")]
+    public void TestOpenRestaurants()
+    {
+        var restaurants = restaurantManager.GetOpenRestaurants(DateTime.Now());
+        Assert.IsTrue(restaurants.Count == 1);
+    }
+}
+```
 
 ### Jasmine
 *JavaScript Testing*
+[Testing with Jasmine](http://pivotal.github.io/jasmine/) has some examples of how to write Jasmine tests.
 
 ## License
 
