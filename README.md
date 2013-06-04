@@ -112,12 +112,13 @@ An example of a generic database initializer that seeds the fixture test data
  Nav.Host = "http://localhost";
  // Easily set pages on Nav.Pages 
  Nav.Pages.Home = "/";
- Nav.Pages.About = "/About";
+ Nav.Pages.Restaurants = "/Restaurants";
 ```
 
 ### Using a Generic Repository
 For more information about the Repository pattern please read [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 Your web application must be using a generic repository in order to gain the BDD benefits that this framework provides. 
+
 
 ### Creating a Test Repository
 A test context is substituted for unit testing with data fixtures. This gives us tests that run in memory and thus very speedily since they are not polling/resetting the database.
