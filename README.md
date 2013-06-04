@@ -116,7 +116,7 @@ An example of a generic database initializer that seeds the fixture test data
 ```
 
 ### Using a Generic Repository
-For more information about the Repository pattern please read [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application)
+For more information about the Repository pattern please read [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 Your web application must be using a generic repository in order to gain the BDD benefits that this framework provides. 
 
 ### Creating a Test Repository
