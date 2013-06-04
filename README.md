@@ -76,6 +76,34 @@ public class SpecHelper
 }
 ```
 
+### Creating a Seed Initializer 
+An example of a generic database initializer that seeds the fixture test data 
+```csharp
+ public class MyProjectSeedInitializer : IDatabaseInitializer<MyProjectDataContext>
+ {
+     private Action<MyProjectDataContext> FixtureSeeder; 
+
+     public MyProjectSeedInitializer()
+     {
+         
+     }
+
+     public MyProjectSeedInitializer(Action<MyProjectDataContext> fixtureSeeder)
+     {
+         FixtureSeeder = fixtureSeeder;
+     }
+
+     protected void Seed(MyProjectDataContext context)
+     {
+         // Populate DB with Fixture data, if passed in
+         if (FixtureSeeder != null)
+         {
+             // Seeds the fixtures
+             FixtureSeeder(context);
+         }
+     }
+ }
+```
 
 ### Creating Pages 
 ```csharp
