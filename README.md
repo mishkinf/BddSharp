@@ -125,6 +125,24 @@ A test context is substituted for unit testing with data fixtures. This gives us
 
 ### Creating Test Data Fixtures
 Idealy your tests should be driven against test data. Test data fixtures provide the ability to simply generate data which is used for in memory unit testing and for seeding the test database that runs the SpecFlow/WatiN integration tests.
+```csharp
+class RestaurantsFixtures
+{
+	[FixtureLoader]
+	public static void Restaurants(dynamic fixtures)
+	{
+		fixtures.mishkinsRestaurant = new Restaurant()
+		{
+			Name = "Mishkin's Amazing Italian Food",
+			OpeningTime = DateTime.Now().AddHours(-2),
+			ClosingTime = DateTime.Now().AddHours(2)
+		};
+		
+		// Add to our test context
+		SpecHelper.AddFixtureToContext(fixtures.mishkinsRestaurant);
+	}
+}
+```
 
 ### Using Test Data Fixtures
 Test data can be easily referenced in any of your tests
