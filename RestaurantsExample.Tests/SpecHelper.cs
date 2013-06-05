@@ -16,17 +16,8 @@ namespace RestaurantsExample.Tests
     public class SpecHelper
     {
         public static dynamic dataFixtures;
-//        private static MyProjectDataContext MyProjectContext;
         private static string serverPath = @"C:\Users\mfaustini\Documents\Visual Studio 2012\Projects\BddSharp\RestaurantsExample";
         public static RestaurantsTestServer testServer = new RestaurantsTestServer("44444", serverPath);
-
-        public static void Log(string text,
-                        [CallerFilePath] string file = "",
-                        [CallerMemberName] string member = "",
-                        [CallerLineNumber] int line = 0)
-        {
-            Console.WriteLine("{0}_{1}({2}): {3}", Path.GetFileName(file), member, line, text);
-        }
 
         [SetUp]
         public static void BeforeAllTests()
