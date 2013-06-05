@@ -17,7 +17,6 @@ For instance if I was building a website for finding restaurants and I wanted to
 ```csharp
 // RestaurantManagerSpec.cs
 // Assuming I have created several test data fixtures but only 1 with a 5 star rating
-
 RestaurantManager restaurantManager = new RestaurantManager();
 
 Restaurants[] restaurants = restaurantManager.getRestaurantsWithRating(5);
