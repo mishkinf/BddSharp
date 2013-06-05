@@ -7,7 +7,7 @@ Mishkin Faustini, Author
 ### Description
 BddSharp is intended to make setting up a behavior driven test development environment for ASP.Net Entity Framework based web applications easy.
 
-What is BDD? It is an acronym for Behavior Driven Development. It is a process of developing code based on the desired behavior of your application.
+*What is BDD?* It is an acronym for Behavior Driven Development. It is a process of developing code based on the desired behavior of your application.
 For instance if I was building a website for finding restaurants and I wanted to behavior drive the development, I would begin by writing my tests as the desired behavior I wanted. For example:
 
 #### Desired Behavior 
