@@ -1,8 +1,7 @@
 # BddSharp
  *A Simple Behavior Driven Development Setup for C#*
 
-BddSharp is intended to make setting up a behavior driven test development environment for ASP.net applications much simpler (particularly those using Entity Framework). 
-
+BddSharp is intended to make setting up a behavior driven test development environment for ASP.Net Entity Framework based web applications easy. It supports building fixtures that load into your test database and into an in-memory version of your Entity Framework data model to support both unit and integration testing with NUnit and SpecFlow. It provides a way to automatically spawn a test server before running SpecFlow tests and helps with generating Jasmine fixtures.
 ### Credits
 Mishkin Faustini, Author
 
