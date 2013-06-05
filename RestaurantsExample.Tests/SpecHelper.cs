@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using BddSharp;
 using NUnit.Framework;
 using RestaurantsExample.EntityFramework;
 using RestaurantsExample.Models;
@@ -16,7 +17,7 @@ namespace RestaurantsExample.Tests
     {
         public static dynamic dataFixtures;
 //        private static MyProjectDataContext MyProjectContext;
-        private static string serverPath = @"C:\Users\mfaustini\Documents\Visual Studio 2012\Projects\BddSharp\RestaurantsExample\bin";
+        private static string serverPath = @"C:\Users\mfaustini\Documents\Visual Studio 2012\Projects\BddSharp\RestaurantsExample";
         public static RestaurantsTestServer testServer = new RestaurantsTestServer("44444", serverPath);
 
         public static void Log(string text,
@@ -30,6 +31,8 @@ namespace RestaurantsExample.Tests
         [SetUp]
         public static void BeforeAllTests()
         {
+            Nav.Host = "http://localhost:44444";
+
             RestaurantsContext restaurantsContext = RestaurantsContext.Instance;
             // Runs before any of the tests are run
             dataFixtures = new BddSharp.Fixtures();
@@ -41,13 +44,13 @@ namespace RestaurantsExample.Tests
             restaurantsContext.Database.Initialize(true);
             restaurantsContext.Database.Connection.Open();
 
-//            testServer.Spawn();
+            testServer.Spawn();
         }
 
         [TearDown]
         public static void AfterAllTests()
         {
-//            testServer.Kill();
+            testServer.Kill();
         }
     }
 }
