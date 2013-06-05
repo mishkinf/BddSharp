@@ -15,6 +15,13 @@ Mishkin Faustini, Author
    * [WaTin](https://nuget.org/packages/watin/)
    * [NUnit](https://nuget.org/packages/nunit/)
  2. You must have IIS Installed and Configured for your needs
+ 3. General Folder Structure Recommended for Test Project
+  * TestProject
+     - Feature/
+     - Fixtures/
+     - JavaScript/
+     - Spec/
+     - SpecHelper.cs
 
 ### Creating A Test Server
 
@@ -37,6 +44,66 @@ server.Spawn();
 
 server.Kill(); 
 ```
+ 
+### Understanding SpecHelper.cs
+SpecHelper.cs is the file where you should create a test server, do any global level test setup and cleanup, and seed your test database properly. 
+
+```csharp
+
+ [SetUpFixture]
+public class SpecHelper
+{
+    public static dynamic dataFixtures;
+    private static MyProjectDataContext MyProjectContext;
+    private static string serverPath = "<path to deployed app>";
+    public static MyProjectTestServer testServer = new MyProjectTestServer("44444", serverPath);
+
+    [SetUp]
+    public static void BeforeAllTests()
+    {
+      // Runs before any of the tests are run
+      Database.SetInitializer(new MyProjectSeedInitializer(context => dataFixtures.Load(context, Assembly.GetExecutingAssembly())));;
+      MyProjectContext.Database.Initialize(true);
+      
+      testServer.Spawn();
+    }
+
+    [TearDown]
+    public static void AfterAllTests()
+    {
+        testServer.Kill();
+    }
+}
+```
+
+### Creating a Seed Initializer 
+An example of a generic database initializer that seeds the fixture test data 
+```csharp
+ public class MyProjectSeedInitializer : IDatabaseInitializer<MyProjectDataContext>
+ {
+     private Action<MyProjectDataContext> FixtureSeeder; 
+
+     public MyProjectSeedInitializer()
+     {
+         
+     }
+
+     public MyProjectSeedInitializer(Action<MyProjectDataContext> fixtureSeeder)
+     {
+         FixtureSeeder = fixtureSeeder;
+     }
+
+     protected void Seed(MyProjectDataContext context)
+     {
+         // Populate DB with Fixture data, if passed in
+         if (FixtureSeeder != null)
+         {
+             // Seeds the fixtures
+             FixtureSeeder(context);
+         }
+     }
+ }
+```
 
 ### Creating Pages 
 ```csharp
@@ -45,31 +112,128 @@ server.Kill();
  Nav.Host = "http://localhost";
  // Easily set pages on Nav.Pages 
  Nav.Pages.Home = "/";
- Nav.Pages.About = "/About";
+ Nav.Pages.Restaurants = "/Restaurants";
 ```
 
-### Using a Generic Context
+### Using a Generic Repository
+For more information about the Repository pattern please read [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
+Your web application must be using a generic repository in order to gain the BDD benefits that this framework provides. 
 
-### Creating a Test Context
 
-### Creating Test Fixtures
+### Creating a Test Repository
+A test context is substituted for unit testing with data fixtures. This gives us tests that run in memory and thus very speedily since they are not polling/resetting the database.
 
-### Using Test Fixtures
+### Creating Test Data Fixtures
+Idealy your tests should be driven against test data. Test data fixtures provide the ability to simply generate data which is used for in memory unit testing and for seeding the test database that runs the SpecFlow/WatiN integration tests.
+
+TestDataFixtures should be placed in the Fixtures/ folder of your test project. 
+
+A static function annotated with [FixtureLoader] can be used to create fixtures.
+
+```csharp
+// Fixtures/RestaurantsFixtures.cs
+class RestaurantsFixtures
+{
+	[FixtureLoader]
+	public static void Restaurants(dynamic fixtures)
+	{
+		fixtures.mishkinsRestaurant = new Restaurant()
+		{
+			Name = "Mishkin's Amazing Italian Food",
+			OpeningTime = DateTime.Now().AddHours(-2),
+			ClosingTime = DateTime.Now().AddHours(2)
+		};
+		
+		// Add to our test context
+		SpecHelper.AddFixtureToContext(fixtures.mishkinsRestaurant);
+	}
+}
+```
+
+### Using Test Data Fixtures
+Test data can be easily referenced in any of your tests
+
 
 ## Examples
 
-### SpecFlow & WaTin
+### SpecFlow & WatiN
 *Integration Testing using Test Fixture Data*
+
+```csharp
+// RestaurantFixtures.cs
+// Insert fixture here
+```
+
+```gherkin
+# Restaurants.feature
+Feature: Restaurants
+
+Scenario: Get Open Restaurants 
+ Given I have loaded test data fixtures
+	When I visit the restaurants page
+	And I click on #open_restaurants
+	Then I should see "mishkinsRestaurant" restaurant listed
+```
+
+```csharp
+// CustomWebSteps.cs
+[Binding]
+public class CustomWebSteps
+{
+    [Given]
+    public void Given_I_have_loaded_fixtures()
+    {
+        SpecHelper.LoadTestDataFixtures();
+        SpecHelper.EnsureTestServerIsSetup();
+    }
+
+    [When(@"I visit the restaurants page")]
+    public void WhenIVisitTheRestaurantsPage()
+    {
+        WebBrowser.Current.GoTo(Nav.Pages.Restaurants);
+        WebBrowser.Current.WaitForComplete();            
+    }
+
+    [Then("I should see \"(.*)\" restaurant listed)]
+    public void Then_I_should_see_restaurant_in_results(string fixtureName)
+    {
+        Restaurant fixture = SpecHelper.dataFixtures[fixtureName];
+        Assert.True(WebBrowser.Current.Div("restaurants").Text.Contains(fixture.RestaurantName));
+    }
+}
+```
 
 ### NUnit
 *Unit Testing using Test Fixture Data*
+```csharp
+[TestFixture]
+public class RestaurantManagerSpec
+{
+    RestaurantManager restaurantManager  = new RestaurantManager();
+
+    [SetUp]
+    public void SetupRestaurantManagerSpec()
+    {
+        TestContext<Restaurant> restaurantRepository = SpecHelper.GetContext<Restaurant>();
+        restaurantManager.Repository = restaurantRepository;
+    }
+
+    [Test, Description("When given a time, should return restaurants that are open")]
+    public void TestOpenRestaurants()
+    {
+        var restaurants = restaurantManager.GetOpenRestaurants(DateTime.Now());
+        Assert.IsTrue(restaurants.Count == 1);
+    }
+}
+```
 
 ### Jasmine
 *JavaScript Testing*
+[Testing with Jasmine](http://pivotal.github.io/jasmine/) has some examples of how to write Jasmine tests.
 
 ## License
 
-The MIT License Copyright (c) 2011 TrueCar, Inc.
+The MIT License Copyright (c) 2013 TrueCar, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
