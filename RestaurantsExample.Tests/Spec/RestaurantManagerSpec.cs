@@ -21,7 +21,7 @@ namespace RestaurantsExample.Tests.Spec
         [Test, Description("When given a time, should return restaurants that are open")]
         public void TestOpenRestaurants()
         {
-            Restaurant[] restaurants = restaurantManager.GetOpenRestaurants();
+            Restaurant[] restaurants = restaurantManager.GetOpenRestaurants(DateTime.Now);
             Assert.IsTrue(restaurants.Length == 1);
         }
     }

@@ -16,10 +16,9 @@ namespace RestaurantsExample.Managers
             restaurantRepository = new RestaurantRepository(RestaurantsContext.Instance);
         }
 
-        public Restaurant[] GetOpenRestaurants()
+        public Restaurant[] GetOpenRestaurants(DateTime time)
         {
-            DateTime now = DateTime.Now;
-            return restaurantRepository.Entities.Where(x => x.OpeningTime <= now && x.ClosingTime > now).ToArray();
+            return restaurantRepository.Entities.Where(x => x.OpeningTime <= time && x.ClosingTime > time).ToArray();
         }
     }
 }
