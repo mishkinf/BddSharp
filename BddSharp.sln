@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BddSharp", "BddSharp\BddSharp.csproj", "{7D9536C5-B0F7-4B83-85BA-81D0103B43E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantsExample", "RestaurantsExample\RestaurantsExample.csproj", "{30DF0B39-92FA-4A4F-B0F8-F8DFF28CBFBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantsExample.Tests", "RestaurantsExample.Tests\RestaurantsExample.Tests.csproj", "{FF0A3821-D67E-465F-AE0B-148697FA96A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{7D9536C5-B0F7-4B83-85BA-81D0103B43E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D9536C5-B0F7-4B83-85BA-81D0103B43E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D9536C5-B0F7-4B83-85BA-81D0103B43E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DF0B39-92FA-4A4F-B0F8-F8DFF28CBFBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DF0B39-92FA-4A4F-B0F8-F8DFF28CBFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DF0B39-92FA-4A4F-B0F8-F8DFF28CBFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DF0B39-92FA-4A4F-B0F8-F8DFF28CBFBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,2 +1,26 @@
-BddSharp/bin
-BddSharp/obj
+[Oo]bj/
+[Bb]in/
+
+# User-specific
+*.cache
+*.user
+*.suo
+
+# Resharper
+_ReSharper.*/
+/_ReSharper.*/
+~$*
+*.[Rr]eSharper
+*.5.1.ReSharper.user
+
+# OS Specific files
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+
+# Testing
+local.testsettings
+/TestResults/
+*.vsmdi
+testimpactdata.sdf
+
