@@ -32,7 +32,7 @@ public class RestaurantManager
 	// ...some code before...
 	public Restaurant[] getRestaurantWithRating(int rating)
 	{
-		RestaurantRepository.where(x => x.Rating == 5).ToArray();
+		RestaurantRepository.Entities.Where(x => x.Rating == 5).ToArray();
 	}
 	// ...some code after...
 }
