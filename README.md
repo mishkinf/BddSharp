@@ -5,7 +5,39 @@
 Mishkin Faustini, Author
 
 ### Description
-BddSharp is intended to make setting up a behavior driven test development environment for ASP.Net Entity Framework based web applications easy. 
+BddSharp is intended to make setting up a behavior driven test development environment for ASP.Net Entity Framework based web applications easy.
+
+What is BDD? It is an acronym for Behavior Driven Development. It is a process of developing code based on the desired behavior of your application.
+For instance if I was building a website for finding restaurants and I wanted to behavior drive the development, I would begin by writing my tests as the desired behavior I wanted. For example:
+
+#### Desired Behavior 
+"When I load the restaurants app home page, I want to see a list of all the restaurants that have a 5-star rating"
+
+#### Then I write the test
+```csharp
+// RestaurantManagerSpec.cs
+// Assuming I have created several test data fixtures but only 1 with a 5 star rating
+
+RestaurantManager restaurantManager = new RestaurantManager();
+
+Restaurants[] restaurants = restaurantManager.getRestaurantsWithRating(5);
+Assert.Equals(restaurants.Length, 1);
+Assert.Equals(restuarants[0].Name, "A 5-Star Restaurant");
+```
+#### Finally, I fulfill this all by writing the code
+```csharp
+// RestaurantManager.cs
+
+public class RestaurantManager
+{
+	// ...some code before...
+	public Restaurant[] getRestaurantWithRating(int rating)
+	{
+		RestaurantRepository.where(x => x.Rating == 5).ToArray();
+	}
+	// ...some code after...
+}
+```
 
 ### Features
  * Supports test data fixture building
