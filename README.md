@@ -38,7 +38,7 @@ public class RestaurantManager
 }
 ```
 
-### Features
+### BddSharp Features
  * Supports test data fixture building
  	- Works with a test DB and an in-memory version of your Entity Framework context to support both very fast unit tests and fully functional integration testing
  * Provides a way to easily spawn a test server automatically on a specified host/port
