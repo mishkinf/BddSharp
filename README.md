@@ -1,10 +1,63 @@
 # BddSharp
  *A Simple Behavior Driven Development Setup for C#*
 
-BddSharp is intended to make setting up a behavior driven test development environment for ASP.net applications much simpler (particularly those using Entity Framework). 
-
 ### Credits
 Mishkin Faustini, Author
+
+### Description
+BddSharp is intended to make setting up a behavior-driven test development (BDD) and test-driven development (TDD) environment for ASP.Net Entity Framework based web applications easy.
+
+<b>*What is BDD?*</b> It is an acronym for Behavior-Driven Development. It is a process of developing code based on the desired behavior of your application.
+For instance if I was building a website for finding restaurants and I wanted to behavior drive the development, I would begin by writing my tests as the desired behavior I wanted. For example:
+
+<b>*What is TDD?*</b> It is an acroynum of Test-Driven Development which is a specialized version of BDD. TDD is the process of writing a set of tests before writing the code that attempts to make the tests pass. In the context of BDD, test-driven development is the process of writing tests that describe the behavior of your project before writing the logic (code) to fulfill the desired behavior. Please refer to the example below.
+
+<b>*Why BDD/TDD?*</b> By beginning with writing the desired behavior of a product we often have a strong focus on building only the vital parts of our application in a manner that is very *agile* to future changes. In addition, since we are testing everything we are coding, we know why and what a future change to the behavior of our product causes and we can easily dig in and fix it. It provides a higher degree of assurance that our product is fully functioning.  
+
+#### Example Desired Behavior 
+> "When I load the restaurants app home page, I want to see a list of all the restaurants that have a 5-star rating"
+
+#### Then I write the test
+```csharp
+// RestaurantManagerSpec.cs
+// Assuming I have created several test data fixtures but only 1 with a 5 star rating
+RestaurantManager restaurantManager = new RestaurantManager();
+
+Restaurants[] restaurants = restaurantManager.getRestaurantsWithRating(5);
+Assert.Equals(restaurants.Length, 1);
+Assert.Equals(restuarants[0].Name, "A 5-Star Restaurant");
+```
+#### Finally, I fulfill this all by writing the code
+```csharp
+// RestaurantManager.cs
+
+public class RestaurantManager
+{
+	// ...some code before...
+	public Restaurant[] getRestaurantWithRating(int rating)
+	{
+		return RestaurantRepository.Entities.Where(x => x.Rating == 5).ToArray();
+	}
+	// ...some code after...
+}
+```
+
+### Important Aspects of a Good BDD/TDD setup
+ * Has quick and easy way to build fake data to test against
+ * Always provides a perfect and untouched representation of the data on each test run
+ * Simple to write both unit and integration tests
+ * Runs easily on a continuous integration server
+ * Allows tests to be written in english in terms of *behaviors*
+
+### BddSharp Features
+ * Supports test data fixture building
+ 	- Works with a test DB and an in-memory version of your Entity Framework context to support both very fast unit tests and fully functional integration testing
+ * Provides a way to easily spawn a test server automatically on a specified host/port
+ * Supports running tests on a CI environment like TeamCity/Jenkins
+
+### Upcoming BddSharp Features 
+ * Automatic Jasmine HTML fixture generation before running tests
+ * Improved test data fixture generation
 
 ## Setup / Requirements
 
