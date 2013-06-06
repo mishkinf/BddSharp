@@ -38,12 +38,22 @@ public class RestaurantManager
 }
 ```
 
+### Important Aspects of a Good BDD/TDD setup
+ * Has quick and easy way to build fake data to test against
+ * Always provides a perfect and untouched representation of the data on each test run
+ * Simple to write both unit and integration tests
+ * Runs easily on a continuous integration server
+ * Allows tests to be written in english in terms of *behaviors*
+
 ### BddSharp Features
  * Supports test data fixture building
  	- Works with a test DB and an in-memory version of your Entity Framework context to support both very fast unit tests and fully functional integration testing
  * Provides a way to easily spawn a test server automatically on a specified host/port
  * Supports running tests on a CI environment like TeamCity/Jenkins
- * Allows Jasmine fixtures to be automatically generated
+
+### Upcoming BddSharp Features 
+ * Automatic Jasmine HTML fixture generation before running tests
+ * Improved test data fixture generation
 
 ## Setup / Requirements
 
