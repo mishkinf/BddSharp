@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BddSharp
+namespace BddSharp.Web
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
@@ -24,8 +19,6 @@ namespace BddSharp
 
         public GenericRepository(DbContext context)
         {
-            string connString = "Data Source=.;Initial Catalog=RestaurantExample;Integrated Security=True";
-//            string connString = ConfigurationManager.ConnectionStrings[contextName].ConnectionString;
             DataContext = context;
         }
 

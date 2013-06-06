@@ -1,9 +1,6 @@
-﻿using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
-using BddSharp;
-using RestaurantsExample.EntityFramework;
+﻿using BddSharp.Web;
 using RestaurantsExample.Models;
+using System.Data.Entity;
 
 namespace RestaurantsExample.Repositories
 {

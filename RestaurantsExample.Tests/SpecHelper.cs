@@ -1,14 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Data.Entity;
-using System.IO;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using BddSharp;
+﻿using BddSharp;
 using NUnit.Framework;
 using RestaurantsExample.EntityFramework;
-using RestaurantsExample.Models;
-using RestaurantsExample.Repositories;
+using System.Data;
+using System.Data.Entity;
+using System.Reflection;
 
 namespace RestaurantsExample.Tests
 {
@@ -17,7 +12,7 @@ namespace RestaurantsExample.Tests
     {
         public static dynamic dataFixtures;
         private static string serverPath = @"C:\Users\mfaustini\Documents\Visual Studio 2012\Projects\BddSharp\RestaurantsExample";
-        public static RestaurantsTestServer testServer = new RestaurantsTestServer("44444", serverPath);
+        public static RestaurantsTestServer testServer = new RestaurantsTestServer(serverPath);
 
         [SetUp]
         public static void BeforeAllTests()

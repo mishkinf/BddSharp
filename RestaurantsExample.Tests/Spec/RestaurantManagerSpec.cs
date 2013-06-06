@@ -1,8 +1,8 @@
-﻿using System;
-using BddSharp;
+﻿using BddSharp;
 using NUnit.Framework;
 using RestaurantsExample.Managers;
 using RestaurantsExample.Models;
+using System;
 
 namespace RestaurantsExample.Tests.Spec
 {

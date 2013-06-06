@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BddSharp
+namespace BddSharp.Web
 {
     public interface IRepository<T> where T : class
     {

@@ -313,6 +313,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BddSharp.Web\BddSharp.Web.csproj">
+      <Project>{B152A961-5749-4A7B-B702-757569BC0122}</Project>
+      <Name>BddSharp.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BddSharp\BddSharp.csproj">
       <Project>{7d9536c5-b0f7-4b83-85ba-81d0103b43e8}</Project>
       <Name>BddSharp</Name>

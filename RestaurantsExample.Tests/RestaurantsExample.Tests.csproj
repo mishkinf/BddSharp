@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="JavaScript\RestaurantHome.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\Restaurants.feature">
@@ -156,6 +157,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BddSharp.Web\BddSharp.Web.csproj">
+      <Project>{b152a961-5749-4a7b-b702-757569bc0122}</Project>
+      <Name>BddSharp.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BddSharp\BddSharp.csproj">
       <Project>{7d9536c5-b0f7-4b83-85ba-81d0103b43e8}</Project>
       <Name>BddSharp</Name>
@@ -165,9 +170,7 @@
       <Name>RestaurantsExample</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="JavaScript\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RestaurantsExample.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using RestaurantsExample.Models;
 
 namespace RestaurantsExample.EntityFramework
 {

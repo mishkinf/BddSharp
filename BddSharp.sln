@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantsExample", "Resta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantsExample.Tests", "RestaurantsExample.Tests\RestaurantsExample.Tests.csproj", "{FF0A3821-D67E-465F-AE0B-148697FA96A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BddSharp.Web", "BddSharp.Web\BddSharp.Web.csproj", "{B152A961-5749-4A7B-B702-757569BC0122}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF0A3821-D67E-465F-AE0B-148697FA96A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B152A961-5749-4A7B-B702-757569BC0122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B152A961-5749-4A7B-B702-757569BC0122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B152A961-5749-4A7B-B702-757569BC0122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B152A961-5749-4A7B-B702-757569BC0122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

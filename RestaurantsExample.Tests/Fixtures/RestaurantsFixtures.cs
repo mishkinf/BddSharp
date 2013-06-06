@@ -1,7 +1,7 @@
-﻿using System;
-using System.Data.Entity;
-using BddSharp;
+﻿using BddSharp;
 using RestaurantsExample.Models;
+using System;
+using System.Data.Entity;
 
 namespace RestaurantsExample.Tests.Fixtures
 {
