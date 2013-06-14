@@ -92,7 +92,7 @@ public class RestaurantManager
 // Create a class that derives from TestServer
 public class MyProjectTestServer : TestServer
 {
-  public MyProjectTestServer(string port, string physicalPathCompiledApp) : base(port, physicalPathCompiledApp)
+  public MyProjectTestServer() : base()
   {
     // CTOR
   }
@@ -100,7 +100,7 @@ public class MyProjectTestServer : TestServer
 
 // Spawn your test server before running tests
 
-MyProjectTestServer server = new MyProjectTestServer("33333", @"c:/somePathToCompiledApp");
+MyProjectTestServer server = new MyProjectTestServer();
 server.Spawn();
 
 // Run all SpecFlow/Integration tests
@@ -112,60 +112,76 @@ server.Kill();
 SpecHelper.cs is the file where you should create a test server, do any global level test setup and cleanup, and seed your test database properly. 
 
 ```csharp
-
- [SetUpFixture]
+[SetUpFixture]
 public class SpecHelper
 {
-    public static dynamic dataFixtures;
-    private static MyProjectDataContext MyProjectContext;
-    private static string serverPath = "<path to deployed app>";
-    public static MyProjectTestServer testServer = new MyProjectTestServer("44444", serverPath);
-
-    [SetUp]
-    public static void BeforeAllTests()
-    {
-      // Runs before any of the tests are run
-      Database.SetInitializer(new MyProjectSeedInitializer(context => dataFixtures.Load(context, Assembly.GetExecutingAssembly())));;
-      MyProjectContext.Database.Initialize(true);
-      
-      testServer.Spawn();
-    }
-
-    [TearDown]
-    public static void AfterAllTests()
-    {
-        testServer.Kill();
-    }
+	public static dynamic dataFixtures;
+	public static RestaurantsTestServer testServer = new RestaurantsTestServer();
+	
+	[SetUp]
+	public static void BeforeAllTests()
+	{
+	    Nav.Host = "http://localhost:44444";
+	
+	    RestaurantsContext restaurantsContext = RestaurantsContext.Instance;
+	    // Runs before any of the tests are run
+	    dataFixtures = new BddSharp.Fixtures();
+	
+	    if (restaurantsContext.Database.Connection.State == ConnectionState.Open)
+	        restaurantsContext.Database.Connection.Close();
+	
+	    Database.SetInitializer(new RestaurantsSeedInitializer(context => dataFixtures.Load(restaurantsContext, Assembly.GetExecutingAssembly()))); ;
+	    restaurantsContext.Database.Initialize(true);
+	    restaurantsContext.Database.Connection.Open();
+	
+	    testServer.Spawn();
+	}
+	
+	[TearDown]
+	public static void AfterAllTests()
+	{
+	    testServer.Kill();
+	}
 }
 ```
 
 ### Creating a Seed Initializer 
 An example of a generic database initializer that seeds the fixture test data 
 ```csharp
- public class MyProjectSeedInitializer : IDatabaseInitializer<MyProjectDataContext>
- {
-     private Action<MyProjectDataContext> FixtureSeeder; 
+using System;
+using System.Data.Entity;
 
-     public MyProjectSeedInitializer()
-     {
-         
-     }
+namespace RestaurantsExample.EntityFramework
+{
+    public class RestaurantsSeedInitializer : IDatabaseInitializer<RestaurantsContext>
+    {
+        private Action<RestaurantsContext> FixtureSeeder;
 
-     public MyProjectSeedInitializer(Action<MyProjectDataContext> fixtureSeeder)
-     {
-         FixtureSeeder = fixtureSeeder;
-     }
+        public RestaurantsSeedInitializer()
+        {
 
-     protected void Seed(MyProjectDataContext context)
-     {
-         // Populate DB with Fixture data, if passed in
-         if (FixtureSeeder != null)
-         {
-             // Seeds the fixtures
-             FixtureSeeder(context);
-         }
-     }
- }
+        }
+
+        public RestaurantsSeedInitializer(Action<RestaurantsContext> fixtureSeeder)
+        {
+            FixtureSeeder = fixtureSeeder;
+        }
+
+        protected void Seed(RestaurantsContext context)
+        {
+            // Populate DB with Fixture data, if passed in
+            if (FixtureSeeder != null)
+            {
+                FixtureSeeder(context);
+            }
+        }
+
+        public void InitializeDatabase(RestaurantsContext context)
+        {
+            Seed(context);
+        }
+    }
+}
 ```
 
 ### Creating Pages 
@@ -195,21 +211,33 @@ A static function annotated with [FixtureLoader] can be used to create fixtures.
 
 ```csharp
 // Fixtures/RestaurantsFixtures.cs
-class RestaurantsFixtures
+using BddSharp;
+using RestaurantsExample.Models;
+using System;
+using System.Data.Entity;
+
+namespace RestaurantsExample.Tests.Fixtures
 {
-	[FixtureLoader]
-	public static void Restaurants(dynamic fixtures)
-	{
-		fixtures.mishkinsRestaurant = new Restaurant()
-		{
-			Name = "Mishkin's Amazing Italian Food",
-			OpeningTime = DateTime.Now().AddHours(-2),
-			ClosingTime = DateTime.Now().AddHours(2)
-		};
-		
-		// Add to our test context
-		SpecHelper.AddFixtureToContext(fixtures.mishkinsRestaurant);
-	}
+    class RestaurantsFixtures
+    {
+        [FixtureLoader]
+        public static void Restaurants(dynamic fixtures, DbContext context)
+        {
+            fixtures.mishkinsRestaurant = new Restaurant()
+            {
+                Id = 1,
+                Name = "Mishkin's Amazing Italian Food",
+                OpeningTime = DateTime.Now.AddHours(-2),
+                ClosingTime = DateTime.Now.AddHours(2)
+            };
+
+            context.Set<Restaurant>().Add(fixtures.mishkinsRestaurant);
+            context.SaveChanges();
+
+            // Add to our test context
+            TestRepositories.AddFixtureToContext(fixtures.mishkinsRestaurant);
+        }
+    }
 }
 ```
 
