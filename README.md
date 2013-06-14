@@ -65,8 +65,9 @@ public class RestaurantManager
    * [BddSharp.Web](https://nuget.org/packages/BddSharp)
  2. Setup a Install the following NuGet Packages on your Test Project
    * [BddSharp](https://nuget.org/packages/BddSharp)
- 3. You must have IIS Installed and Configured for your needs
- 4. Configure App.config settings inside of your test project
+ 3. Install [ReSharper](http://www.jetbrains.com/resharper/) for Jasmine testing ease
+ 4. You must have IIS Installed and Configured for your needs
+ 5. Configure App.config settings inside of your test project
 
 ```xml
   <appSettings>
