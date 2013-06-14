@@ -10,12 +10,20 @@ namespace BddSharp
         private readonly string WebDevPath, PortNumber, ApplicationRoot, VirtualPath;
         public NameValueCollection EnvironmentVariables = new NameValueCollection();
 
-        protected TestServer(string applicationRoot)
+        protected TestServer()
         {
             WebDevPath = ConfigurationManager.AppSettings["WebDevPath"];
             PortNumber = ConfigurationManager.AppSettings["PortNumber"];
             VirtualPath = ConfigurationManager.AppSettings["VirtualPath"];
-            ApplicationRoot = applicationRoot;
+            ApplicationRoot = ConfigurationManager.AppSettings["AppRoot"];
+        }
+
+        protected TestServer(string webDevPath, string portNumber, string virtualPath, string appRoot)
+        {
+            WebDevPath = webDevPath;
+            PortNumber = portNumber;
+            VirtualPath = virtualPath;
+            ApplicationRoot = appRoot;
         }
 
         protected TestServer(string webDevPath, string portNumber, string applicationRoot, string virtualPath = "", NameValueCollection environmentVars = null)
