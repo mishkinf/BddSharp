@@ -61,14 +61,12 @@ public class RestaurantManager
 
 ## Setup / Requirements
 
- 1. Install the following NuGet Packages 
+ 1. Install the following NuGet Packages on your Web Project
+   * [BddSharp.Web](https://nuget.org/packages/BddSharp)
+ 2. Setup a Install the following NuGet Packages on your Test Project
    * [BddSharp](https://nuget.org/packages/BddSharp)
-   * [SpecFlow](https://nuget.org/packages/SpecFlow/)
-   * [SpecFlow.NUnit](https://nuget.org/packages/SpecFlow.NUnit/)
-   * [WaTin](https://nuget.org/packages/watin/)
-   * [NUnit](https://nuget.org/packages/nunit/)
- 2. You must have IIS Installed and Configured for your needs
- 3. Configure App.config settings inside of your test project
+ 3. You must have IIS Installed and Configured for your needs
+ 4. Configure App.config settings inside of your test project
 
 ```xml
   <appSettings>
