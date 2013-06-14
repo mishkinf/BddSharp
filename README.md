@@ -68,7 +68,17 @@ public class RestaurantManager
    * [WaTin](https://nuget.org/packages/watin/)
    * [NUnit](https://nuget.org/packages/nunit/)
  2. You must have IIS Installed and Configured for your needs
- 3. General Folder Structure Recommended for Test Project
+ 3. Configure App.config settings inside of your test project
+
+```xml
+  <appSettings>
+    <add key="WebDevPath" value="C:\Program Files (x86)\Common Files\Microsoft Shared\DevServer\11.0\WebDev.WebServer40.exe" />
+    <add key="AppRoot" value="<physical path to root of asp.net application>" />
+    <add key="PortNumber" value="44444" />
+    <add key="VirtualPath" value="" />
+  </appSettings>
+```
+ 4. General Folder Structure Recommended for Test Project
   * TestProject
      - Feature/
      - Fixtures/
