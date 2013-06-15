@@ -58,6 +58,7 @@ public class RestaurantManager
 ### Upcoming BddSharp Features 
  * Automatic Jasmine HTML fixture generation before running tests
  * Improved test data fixture generation
+ * Only spawn test server when running integration test that requires it
 
 ## Setup / Requirements
 
