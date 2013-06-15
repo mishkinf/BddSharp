@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using BddSharp.Web;
 
 namespace RestaurantsExample.EntityFramework
 {
@@ -9,7 +10,6 @@ namespace RestaurantsExample.EntityFramework
 
         public RestaurantsSeedInitializer()
         {
-
         }
 
         public RestaurantsSeedInitializer(Action<RestaurantsContext> fixtureSeeder)
@@ -19,9 +19,10 @@ namespace RestaurantsExample.EntityFramework
 
         protected void Seed(RestaurantsContext context)
         {
-            // Populate DB with Fixture data, if passed in
+            // Clear the DB and load fixtures
             if (FixtureSeeder != null)
             {
+                BddHelpers.ClearDatabase(context);
                 FixtureSeeder(context);
             }
         }

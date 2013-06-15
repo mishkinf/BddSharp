@@ -13,7 +13,7 @@ namespace RestaurantsExample.Managers
 
         public RestaurantManager()
         {
-            restaurantRepository = new RestaurantRepository(RestaurantsContext.Instance);
+            restaurantRepository = new RestaurantRepository();
         }
 
         public Restaurant[] GetOpenRestaurants(DateTime time)

@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using RestaurantsExample.Managers;
 
 namespace RestaurantsExample.Controllers
 {
@@ -7,6 +9,8 @@ namespace RestaurantsExample.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Restaurants Example Home Page";
+            RestaurantManager rm = new RestaurantManager();
+            rm.GetOpenRestaurants(DateTime.Now);
 
             return View();
         }

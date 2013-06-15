@@ -18,7 +18,7 @@ namespace RestaurantsExample.Tests
         {
             Nav.Host = "http://localhost:44444";
 
-            RestaurantsContext restaurantsContext = RestaurantsContext.Instance;
+            RestaurantsContext restaurantsContext = new RestaurantsContext();
             // Runs before any of the tests are run
             dataFixtures = new BddSharp.Fixtures();
 

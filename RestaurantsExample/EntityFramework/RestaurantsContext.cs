@@ -1,32 +1,32 @@
-﻿using RestaurantsExample.Models;
+﻿using System.Configuration;
+using RestaurantsExample.Models;
 using System.Data.Entity;
 
 namespace RestaurantsExample.EntityFramework
 {
     public class RestaurantsContext : DbContext
     {
-        private static RestaurantsContext instance;
+//        private static RestaurantsContext instance;
 
-        private RestaurantsContext() : base("name=DefaultConnection") { }
+        public RestaurantsContext() : base("name=RestaurantTestContext") { }
 
-        private RestaurantsContext(string connectionString) : base(connectionString) { }
+        public RestaurantsContext(string connectionString) : base(connectionString) { }
 
         public DbSet<Restaurant> Restaurants { get; set; }
 
-        public static RestaurantsContext Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    string testConn = "Data Source=.;Initial Catalog=RestaurantTestExample;Integrated Security=True";
-
-                    instance = new RestaurantsContext(testConn);
-                }
-
-                return instance;
-            }
-        }
+//        public static RestaurantsContext Instance
+//        {
+//            get
+//            {
+//                if (instance == null)
+//                {
+//                    string testConn = "Data Source=.;Initial Catalog=RestaurantTestExample;Integrated Security=True";
+//                    instance = new RestaurantsContext(testConn);
+//                }
+//
+//                return instance;
+//            }
+//        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
