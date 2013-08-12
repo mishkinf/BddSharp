@@ -14,7 +14,7 @@ namespace RestaurantsExample.Tests.Spec
         [SetUp]
         public void SetupRestaurantManagerSpec()
         {
-            TestRepository<Restaurant> restaurantRepository = TestRepositories.Get<Restaurant>();
+            var restaurantRepository = TestRepositories.Get<Restaurant>();
             restaurantManager.restaurantRepository = restaurantRepository;
         }
 

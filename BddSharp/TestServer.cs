@@ -5,6 +5,82 @@ using System.Diagnostics;
 
 namespace BddSharp
 {
+    public class TestServer
+    {
+        public NameValueCollection EnvironmentVariables = new NameValueCollection();
+        private readonly string PortNumber, ApplicationRoot;
+        Process _iisProcess;
+
+
+        public TestServer(string portNumber, string appRoot, NameValueCollection environmentVariables)
+        {
+            PortNumber = portNumber;
+            ApplicationRoot = appRoot;
+            EnvironmentVariables = environmentVariables;
+        }
+
+        public TestServer(string portNumber, string appRoot)
+        {
+            PortNumber = portNumber;
+            ApplicationRoot = appRoot;
+        }
+
+        protected TestServer()
+        {
+            PortNumber = ConfigurationManager.AppSettings["PortNumber"];
+            ApplicationRoot = ConfigurationManager.AppSettings["AppRoot"];
+        }
+
+        private bool IsRunning
+        {
+            get { return _iisProcess != null && !_iisProcess.HasExited; }
+        }
+
+        public void Kill()
+        {
+            if (!IsRunning)
+                return;
+
+            _iisProcess.Kill();
+
+        }
+
+        public void Spawn()
+        {
+            if (IsRunning)
+                return;
+
+            var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+
+            _iisProcess = new Process();
+            _iisProcess.StartInfo.FileName = programFiles + @"\IIS Express\iisexpress.exe";
+            _iisProcess.StartInfo.Arguments = string.Format("/path:\"{0}\" /port:{1}", ApplicationRoot, PortNumber);
+
+            _iisProcess.StartInfo.CreateNoWindow = true;
+            //_iisProcess.StartInfo.UseShellExecute = false;
+
+
+            if (EnvironmentVariables != null)
+            {
+                foreach (var key in EnvironmentVariables.AllKeys)
+                {
+                    _iisProcess.StartInfo.EnvironmentVariables.Add(key, EnvironmentVariables[key]);
+                }
+            }
+
+            _iisProcess.Start();
+        }
+    }
+}
+
+/*
+using System;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Diagnostics;
+
+namespace BddSharp
+{
     public abstract class TestServer
     {
         private readonly string WebDevPath, PortNumber, ApplicationRoot, VirtualPath;
@@ -106,3 +182,4 @@ namespace BddSharp
         protected virtual void AfterKill() { }
     }
 }
+*/

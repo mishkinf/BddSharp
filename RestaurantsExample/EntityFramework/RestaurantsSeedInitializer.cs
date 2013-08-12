@@ -22,7 +22,7 @@ namespace RestaurantsExample.EntityFramework
             // Clear the DB and load fixtures
             if (FixtureSeeder != null)
             {
-                BddHelpers.ClearDatabase(context);
+//                BddHelpers.ClearDatabase(context);
                 FixtureSeeder(context);
             }
         }

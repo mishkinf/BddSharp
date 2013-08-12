@@ -2,11 +2,11 @@
 
 namespace RestaurantsExample.Tests
 {
-    public class RestaurantsTestServer : TestServer
-    {
-        public RestaurantsTestServer() : base()
-        {
-            
-        }
-    }
+//    public class RestaurantsTestServer : TestServer
+//    {
+//        public RestaurantsTestServer() : base()
+//        {
+//            
+//        }
+//    }
 }

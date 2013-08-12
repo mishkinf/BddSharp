@@ -11,7 +11,7 @@ namespace RestaurantsExample.Tests
     public class SpecHelper
     {
         public static dynamic dataFixtures;
-        public static RestaurantsTestServer testServer = new RestaurantsTestServer();
+        public static TestServer testServer = new TestServer("44444", @"C:\Users\mfaustini\Documents\Visual Studio 2012\Projects\BddSharp\RestaurantsExample");
 
         [SetUp]
         public static void BeforeAllTests()
@@ -36,6 +36,7 @@ namespace RestaurantsExample.Tests
         public static void AfterAllTests()
         {
             testServer.Kill();
+            WebBrowser.Close();
         }
     }
 }

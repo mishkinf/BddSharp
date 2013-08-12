@@ -14,5 +14,10 @@ namespace BddSharp
                 return ScenarioContext.Current["browser"] as IE;
             }
         }
+
+        public static void Close()
+        {
+            Current.Close();
+        }
     }
 }
