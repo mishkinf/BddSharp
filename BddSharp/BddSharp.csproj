@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFixture.cs" />
     <Compile Include="DynamicDictionary.cs" />
     <Compile Include="Fixtures.cs" />
     <Compile Include="Nav.cs" />

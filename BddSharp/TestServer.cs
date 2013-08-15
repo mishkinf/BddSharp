@@ -25,7 +25,7 @@ namespace BddSharp
             ApplicationRoot = appRoot;
         }
 
-        protected TestServer()
+        public TestServer()
         {
             PortNumber = ConfigurationManager.AppSettings["PortNumber"];
             ApplicationRoot = ConfigurationManager.AppSettings["AppRoot"];

@@ -21,9 +21,12 @@ namespace BddSharp
                 .Union(callingAssembly.GetTypes())
                 .Where(x => Attribute.IsDefined(x, typeof(FixtureLoaderAttribute)));
 
+            DataFixture.Context = context;
+            DataFixture.Fixtures = this;
+
             foreach (var m in members)
             {
-                m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { this, context });
+                m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { });
             }
 
             context.SaveChanges();
@@ -37,9 +40,12 @@ namespace BddSharp
                 .Union(assembly.GetTypes())
                 .Where(x => Attribute.IsDefined(x, typeof(FixtureLoaderAttribute)));
 
+            DataFixture.Context = context;
+            DataFixture.Fixtures = this;
+
             foreach (var m in members)
             {
-                m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { this, context });
+                m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
             }
 
             context.SaveChanges();
