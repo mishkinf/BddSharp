@@ -7,6 +7,11 @@ namespace BddSharp
     {
         private static Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
 
+        public static void Reset()
+        {
+            _repositories = new Dictionary<Type, object>();
+        }
+
         public static void AddFixtureToContext<T>(T item) where T : class
         {
             TestRepository<T> context = Get<T>();
