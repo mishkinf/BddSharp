@@ -27,9 +27,9 @@ namespace BddSharp
             foreach (var m in members)
             {
                 m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { });
+                context.SaveChanges();
             }
 
-            context.SaveChanges();
         }
 
         public void Load(DbContext context, Assembly assembly)
@@ -46,9 +46,9 @@ namespace BddSharp
             foreach (var m in members)
             {
                 m.ReflectedType.GetMethod(m.Name, BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
+                context.SaveChanges();
             }
 
-            context.SaveChanges();
         }
     }
 }
