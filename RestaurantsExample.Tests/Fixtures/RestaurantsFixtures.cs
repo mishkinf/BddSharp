@@ -7,7 +7,7 @@ namespace RestaurantsExample.Tests.Fixtures
 {
     class RestaurantsFixtures : DataFixture
     {
-        [FixtureLoader]
+        [FixtureLoader(Context="Something")]
         public static void Restaurants()
         {
             Add("mishkinsRestaurant", 
