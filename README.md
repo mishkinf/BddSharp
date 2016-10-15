@@ -331,7 +331,7 @@ public class RestaurantManagerSpec
 
 ### Jasmine
 *JavaScript Testing*
-[Testing with Jasmine](http://pivotal.github.io/jasmine/) has some examples of how to write Jasmine tests.
+[Testing with Jasmine](https://jasmine.github.io/) has some examples of how to write Jasmine tests.
 
 ## License
 
